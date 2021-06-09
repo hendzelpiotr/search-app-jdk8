@@ -272,7 +272,7 @@ public class ForcedGcMemoryProfiler implements InternalProfiler {
 				new OptionalScalarResult("+forced-gc-mem.heapUsed.after", (double) usageAfterIteration.heap.getUsed(), "bytes", AggregationPolicy.AVG)
 			));
 		}
-    LinuxVmProfiler.addLinuxVmStats("+forced-gc-mem.linuxVm", l);
+    //LinuxVmProfiler.addLinuxVmStats("+forced-gc-mem.linuxVm", l);
     keepReference = null;
     return l;
   }
