@@ -31,31 +31,20 @@
  */
 package pl.hendzel.searchappjdk8;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.ThreadLocalRandom;
-
-import org.apache.commons.lang3.RandomUtils;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Threads;
 
-/**
- *
- * @author zoly
- */
 @State(Scope.Benchmark)
 @Fork(2)
 @Threads(value = 4)
 public class StringsBenchmark {
 
-  @Benchmark
-  public final InMemoryDatabase subStringDecode() {
-    return new InMemoryDatabase(RandomUtils.nextInt(1000, 100000));
-  }
+    @Benchmark
+    public final InMemoryDatabase subStringDecode() {
+        return new InMemoryDatabase(100000);
+    }
 
 }

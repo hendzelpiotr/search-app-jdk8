@@ -14,6 +14,7 @@ class SearchAppJdk8ApplicationTests {
 	void contextLoads() throws RunnerException {
 		Options options = new OptionsBuilder()
 				.include(".*StringsBenchmark")
+				//.jvmArgs("-server", "-Xmx10G", "-XX:BiasedLockingStartupDelay=0", "-XX:+UseG1GC")
 				.addProfiler(GcProfiler.class)
 				.addProfiler(ForcedGcMemoryProfiler.class)
 				.result("result.csv")
