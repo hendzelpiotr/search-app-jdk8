@@ -11,7 +11,7 @@ class RuntimeController {
     @GetMapping
     RuntimeResponse fetchRuntimeStats() {
         return new RuntimeResponse(
-                RuntimeUtils.getCurrentlyUsedMemory(),
+                RuntimeUtils.getReallyUsedMemory(),
                 RuntimeUtils.getGarbageCollectionTime(),
                 RuntimeUtils.getGcCount());
     }
