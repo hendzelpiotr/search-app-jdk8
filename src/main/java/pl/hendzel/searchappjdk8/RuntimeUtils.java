@@ -3,6 +3,8 @@ package pl.hendzel.searchappjdk8;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 
+import com.sun.management.OperatingSystemMXBean;
+
 final class RuntimeUtils {
 
     private RuntimeUtils() {
@@ -38,6 +40,11 @@ final class RuntimeUtils {
             collectionTime += garbageCollectorMXBean.getCollectionTime();
         }
         return collectionTime;
+    }
+
+    static long getProcessCpuTime() {
+        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        return operatingSystemMXBean.getProcessCpuTime();
     }
 
 }
