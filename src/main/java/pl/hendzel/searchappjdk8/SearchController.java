@@ -1,13 +1,12 @@
 package pl.hendzel.searchappjdk8;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,35 +15,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("search")
 class SearchController {
 
-    private static final int SIZE = 100000;
-    private InMemoryDatabase database = new InMemoryDatabase(SIZE);
+    private static final int SIZE = 1000000;
+    private InMemoryDatabase<String> database = new InMemoryStringDatabase(SIZE);
 
     @GetMapping
-    SentencesResponse search(@RequestParam String word) {
-        Set<String> foundSentences = database.searchSentencesContain(word);
-        return new SentencesResponse(foundSentences);
+    SentencesResponse<String> search(@RequestParam String word) {
+        Set<String> foundSentences = database.search(word);
+        return new SentencesResponse<>(word, foundSentences);
     }
 
     @PutMapping("restart-db")
     void restartDb(@RequestParam int size) {
-        this.database = new InMemoryDatabase(size);
+        this.database = new InMemoryStringDatabase(size);
     }
 
-    static class SentencesResponse {
+    static class SentencesResponse<T> implements Serializable {
         private final int size;
-        private final List<String> foundSentences;
+        private final String word;
+        private final List<T> foundObjects;
 
-        SentencesResponse(Set<String> foundSentences) {
-            this.foundSentences = new ArrayList<>(foundSentences);
-            this.size = foundSentences.size();
+        SentencesResponse(String word, Set<T> foundObjects) {
+            this.word = word;
+            this.foundObjects = new ArrayList<>(foundObjects);
+            this.size = foundObjects.size();
+        }
+
+        public String getWord() {
+            return word;
         }
 
         public int getSize() {
             return size;
         }
 
-        public List<String> getFoundSentences() {
-            return foundSentences;
+        public List<T> getFoundObjects() {
+            return foundObjects;
         }
     }
 }

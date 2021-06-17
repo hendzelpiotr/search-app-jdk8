@@ -10,6 +10,13 @@ final class RuntimeUtils {
     private RuntimeUtils() {
     }
 
+    static void waitUntilGcRun() {
+        long before = getGcCount();
+        System.gc();
+        while (getGcCount() == before) {
+        }
+    }
+
     static long getCurrentlyUsedMemory() {
         return ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed()
                 + ManagementFactory.getMemoryMXBean().getNonHeapMemoryUsage().getUsed();
@@ -27,10 +34,7 @@ final class RuntimeUtils {
     }
 
     static long getReallyUsedMemory() {
-        long before = getGcCount();
-        System.gc();
-        while (getGcCount() == before) {
-        }
+        waitUntilGcRun();
         return getCurrentlyUsedMemory();
     }
 
