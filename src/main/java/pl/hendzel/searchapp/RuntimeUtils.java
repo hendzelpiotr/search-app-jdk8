@@ -1,4 +1,4 @@
-package pl.hendzel.searchappjdk8;
+package pl.hendzel.searchapp;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;

@@ -1,4 +1,4 @@
-package pl.hendzel.searchappjdk8;
+package pl.hendzel.searchapp;
 
 import java.io.Serializable;
 import java.util.ArrayList;

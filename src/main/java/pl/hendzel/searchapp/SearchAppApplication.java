@@ -1,4 +1,4 @@
-package pl.hendzel.searchappjdk8;
+package pl.hendzel.searchapp;
 
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class SearchAppJdk8Application {
+public class SearchAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SearchAppJdk8Application.class, args);
+		SpringApplication.run(SearchAppApplication.class, args);
 	}
 
 	@Bean

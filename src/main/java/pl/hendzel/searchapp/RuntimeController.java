@@ -1,4 +1,4 @@
-package pl.hendzel.searchappjdk8;
+package pl.hendzel.searchapp;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
